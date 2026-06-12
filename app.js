@@ -60,7 +60,7 @@ if (loginBtn) {
     }
 
     loginBtn.disabled = true;
-    loginBtn.innerText = "Logging in...";
+    loginBtn.innerText = "Signing in...";
 
     const { data, error } = await supabaseClient.auth.signInWithPassword({
       email: emailValue,
@@ -109,15 +109,6 @@ if (signupBtn) {
         icon: "error",
         title: "Invalid Phone Number",
         text: "Phone number must be exactly 11 digits long!",
-      });
-      return;
-    }
-
-    if (isNaN(phNumber)) {
-      Swal.fire({
-        icon: "error",
-        title: "Invalid Format",
-        text: "Phone number must contain numbers only!",
       });
       return;
     }
@@ -312,13 +303,13 @@ if (window.location.pathname.includes("dashboard.html")) {
     if (avatarImg && user.user_metadata.avatar_url) {
       avatarImg.src = user.user_metadata.avatar_url;
     }
-    if (headerNameSpan) headerNameSpan.innerText = currentName;
-    if (nameSpan) nameSpan.innerText = currentName;
-    if (emailSpan) emailSpan.innerText = user.email;
-    if (phoneSpan) phoneSpan.innerText = currentPhone;
+    headerNameSpan.innerText = currentName;
+    nameSpan.innerText = currentName;
+    emailSpan.innerText = user.email;
+    phoneSpan.innerText = currentPhone;
 
-    if (editNameInp) editNameInp.value = currentName;
-    if (editPhoneInp) editPhoneInp.value = currentPhone;
+    editNameInp.value = currentName;
+    editPhoneInp.value = currentPhone;
   }
 
   let isEditing = false;
